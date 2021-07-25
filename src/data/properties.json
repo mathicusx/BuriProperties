@@ -1,0 +1,37 @@
+[
+  {
+    "Id": 1,
+    "Name": "House with Garden",
+    "Addres":"Greenwich",
+    "Type": "House",
+    "Price": 120000
+  },
+  {
+    "Id": 2,
+    "Name": "2 Bedroom flat",
+    "Addres":"Westminster",
+    "Type": "Apartment",
+    "Price": 120000
+  },
+  {
+    "Id": 3,
+    "Name": "Central House",
+    "Addres":"East Ham",
+    "Type": "House",
+    "Price": 120000
+  },
+  {
+    "Id": 4,
+    "Name": "3rd Floor Flat",
+    "Addres":"Canary Wharf",
+    "Type": "Apartment",
+    "Price": 120000
+  },
+  {
+    "Id": 5,
+    "Name": "Perfect Location Duplex",
+    "Addres": "Bond Street",
+    "Type": "Duplex",
+    "Price": 120000
+  }
+]

@@ -1,0 +1,34 @@
+.card{
+    border-radius: 25px;
+    border: 2px solid gray;
+    padding: 20px;
+    width: 260px;
+    margin-top: 20px;
+
+}
+.card h3,p{
+  margin-top: 20px;
+  text-align: center;
+}
+
+.card:hover img{
+  transform: scale(1.2,1.2);
+  transition-duration: 500ms;
+  transition-timing-function: ease-out;
+  overflow: hidden;
+}
+.card img{
+  transform: scale(1,1);
+  transition-duration: 500ms;
+  transition-timing-function: ease-out;
+  overflow: hidden;
+}
+.img-wrapper{
+  overflow: hidden;
+}
+
+.button-list{
+  display: flex;
+  align-content: center;
+}
+
