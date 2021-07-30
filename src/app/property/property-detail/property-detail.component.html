@@ -2,7 +2,7 @@
   property-detail works!
   property id is {{propertyId}}
 <br>
-  <button (click)="onNextProperty()" class="btn btn-primary">Next Property</button>
+  <button (click)="onNextProperty()" class="btn btn-primary"[hidden] ="propertyId > 4 ">Next Property</button>
   <button (click)="onPreviousProperty()" class="btn btn-primary"[hidden] ="propertyId < 2">Previous Property</button>
 
 

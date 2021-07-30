@@ -2,9 +2,7 @@
     border-radius: 25px;
     border: 2px solid gray;
     padding: 20px;
-    width: 260px;
     margin-top: 20px;
-
 }
 .card h3,p{
   margin-top: 20px;
@@ -12,23 +10,37 @@
 }
 
 .card:hover img{
+  height: 250px;
   transform: scale(1.2,1.2);
   transition-duration: 500ms;
   transition-timing-function: ease-out;
   overflow: hidden;
 }
 .card img{
+  height: 250px;
   transform: scale(1,1);
   transition-duration: 500ms;
   transition-timing-function: ease-out;
   overflow: hidden;
 }
-.img-wrapper{
+.member-icons{
+  position: absolute;
+  bottom: -10%;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
+  opacity: 0;
+}
+.card-img-wrapper{
   overflow: hidden;
+  position: relative;
+}
+.card-img-wrapper:hover .member-icons{
+   bottom: 0;
+   opacity: 1;
 }
 
-.button-list{
-  display: flex;
-  align-content: center;
+.animate{
+  transition: all 0.3s ease-in-out;
 }
-

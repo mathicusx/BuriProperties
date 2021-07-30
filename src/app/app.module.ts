@@ -16,6 +16,7 @@ const appRoutes: Routes = [// Each route is JS object with 2 Properties. path de
   {path: '', component: PropertyListComponent},
   {path: 'add-property', component: AddPropertyComponent},
   {path: 'rent-property', component: PropertyListComponent},
+  {path: 'sell-property', component: PropertyListComponent},
   {path: 'property-edit/:id', component: PropertyEditComponent},
   {path: 'property-details/:id', component: PropertyDetailComponent},
   {path: '**', component: PropertyListComponent},

@@ -1,13 +1,9 @@
   <div class = "card">
-     <div class = "img-wrapper">
-    <img class="card-img-top" src="assets/images/defaultHouse.png">
-  </div>
-    <div class= "card-body p2">
-      <h3>{{property.Name}}</h3>
-      <p>{{property.Address}}</p>
-      <p>{{property.Type}}</p>
-      <p>{{property.Price}}$</p>
-      <ul class= "button-list">
+     <div class = "card-img-wrapper">
+      <img *ngIf="property.Image" class="card-img-top" src="assets/images/{{property.Image}}.jpg">
+      <img *ngIf="!property.Image" class="card-img-top" src="assets/images/defaultHouse.png">
+
+      <ul class= "list-inline text-center member-icons animate">
         <li class="list-inline-item">
           <button class="btn btn-primary" routerLink="/property-details/{{property.Id}}">Details</button>
         </li>
@@ -16,4 +12,11 @@
           <button class="btn btn-primary" routerLink="/property-edit/{{property.Id}}">Edit</button>
         </li>
       </ul>
+  </div>
+
+    <div class= "card-body p2">
+      <h3>{{property.Name}}</h3>
+      <p>{{property.Address}}</p>
+      <p>{{property.Type}}</p>
+      <p>{{property.Price}}$</p>
     </div>

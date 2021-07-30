@@ -1,35 +1,45 @@
 [
   {
     "Id": 1,
+    "SellRent": 1,
     "Name": "House with Garden",
     "Address":"Greenwich",
     "Type": "House",
+    "Image": "prop-1",
     "Price": 120000
+
   },
   {
     "Id": 2,
-    "Name": "2 Bedroom flat",
+    "Name": "Bedroom flat",
+    "SellRent": 2,
     "Address":"Westminster",
-    "Type": "Apartment",
+    "Type": "Flat",
+    "Image": "prop-2",
     "Price": 120000
   },
   {
     "Id": 3,
     "Name": "Central House",
+    "SellRent": 1,
     "Address":"East Ham",
     "Type": "House",
+    "Image": "prop-3",
     "Price": 120000
   },
   {
     "Id": 4,
-    "Name": "3rd Floor Flat",
+    "Name": "Floor Flat",
+    "SellRent": 2,
     "Address":"Canary Wharf",
-    "Type": "Apartment",
+    "Type": "Flat",
+    "Image": "prop-4",
     "Price": 120000
   },
   {
     "Id": 5,
     "Name": "Perfect Location Duplex",
+    "SellRent": 1,
     "Address": "Bond Street",
     "Type": "Duplex",
     "Price": 120000

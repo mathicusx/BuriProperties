@@ -10,16 +10,22 @@ import { IProperty } from '../IProperty';
 })
 export class HousingService {
 
-constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) { }
 
-getAllProperties(): Observable<IProperty[]> {
-  return this.http.get('data/properties.json').pipe(
-    map(data => {
-      const jsonData = JSON.stringify(data); // converts the data to Json String
-      const propertiesArray: Array<IProperty> = JSON.parse(jsonData);
-      return propertiesArray;
-    })
-  );
-}
+  getAllProperties(SellRent: number): Observable<IProperty[]> {
+    return this.http.get<any[]>('data/properties.json').pipe(
+      map( data => {
+        const propertiesArray: Array<IProperty> = [];
 
-}
+        for (const id in data) {
+          if (data.hasOwnProperty(id) && data[id].SellRent === SellRent) {
+            propertiesArray.push(data[id]);
+          }
+        }
+        return propertiesArray;
+
+      })
+    );
+  }
+
+  }
