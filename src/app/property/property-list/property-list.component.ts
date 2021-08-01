@@ -19,7 +19,7 @@ export class PropertyListComponent implements OnInit {
   //dependency injection
   ngOnInit(): void {//we are using a Service so we dont get code duplication.
     if (this.route.snapshot.url.toString()) {
-      this.SellRent = 2; // We are Using 1 or 2 to determine if we are on 1 = Sell Url or 2 = Rent Url
+      this.SellRent = 2; // means we are on rent-property URl else we are on base URl
     }
     this.housingService.getAllProperties(this.SellRent).subscribe(// as http get returns an observable we are using the subscribe method to return a value.
       data =>{

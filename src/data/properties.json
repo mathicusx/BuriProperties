@@ -11,8 +11,8 @@
   },
   {
     "Id": 2,
-    "Name": "Bedroom flat",
     "SellRent": 2,
+    "Name": "Bedroom flat",
     "Address":"Westminster",
     "Type": "Flat",
     "Image": "prop-2",
@@ -20,8 +20,8 @@
   },
   {
     "Id": 3,
+    "SellRent": 2,
     "Name": "Central House",
-    "SellRent": 1,
     "Address":"East Ham",
     "Type": "House",
     "Image": "prop-3",
@@ -29,8 +29,8 @@
   },
   {
     "Id": 4,
-    "Name": "Floor Flat",
     "SellRent": 2,
+    "Name": "Floor Flat",
     "Address":"Canary Wharf",
     "Type": "Flat",
     "Image": "prop-4",
@@ -38,8 +38,8 @@
   },
   {
     "Id": 5,
-    "Name": "Perfect Location Duplex",
     "SellRent": 1,
+    "Name": "Perfect Location Duplex",
     "Address": "Bond Street",
     "Type": "Duplex",
     "Price": 120000
