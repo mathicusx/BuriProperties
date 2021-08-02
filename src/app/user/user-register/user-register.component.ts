@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { IUser } from 'src/app/model/IUser';
+import { AlertsService } from 'src/app/services/alerts.service';
 import { UserService } from 'src/app/services/user.service';
 import Validation from 'utils/validation';
 
@@ -15,7 +17,9 @@ export class UserRegisterComponent implements OnInit {
   form!: FormGroup;
   submitted = false; // this property helps us to check whether the form is submitted or not.
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) {}
+  constructor(private formBuilder: FormBuilder,
+             private userService: UserService,
+             private alertService: AlertsService,) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group(
@@ -52,6 +56,10 @@ export class UserRegisterComponent implements OnInit {
     if (this.form.valid) {
       //  this.user = Object.assign(this.user, this.form.value);
         this.userService.addUser(this.userData());
+        this.alertService.success("User Registered Succesfully");
+        this.form.reset();
+    }else {
+      this.alertService.error("Fields must not be empty");
     }
     console.log(JSON.stringify(this.form.value, null, 2));
   }

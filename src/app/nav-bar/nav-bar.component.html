@@ -5,8 +5,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class= "navbar-nav ml-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+      <ul class= "navbar-nav mr-auto mb-2 mb-lg-0">
+        <li  *ngIf="!onLogin()" class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="/add-property">Add Property</a>
         </li>
         <li class="nav-item">
@@ -17,19 +17,30 @@
         </li>
       </ul>
     </div>
-    <div class="navbar-nav ml-auto" id="navbarSupportedContent">
-      <ul class= "navbar-nav ml-auto mb-2 mb-lg-0">
-
-        <li class="nav-item">
+    <div class="navbar-nav mr-auto" id="navbarSupportedContent">
+      <ul class= "navbar-nav mr-auto mb-2 mb-lg-0">
+        <li *ngIf="!onLogin()" class="nav-item">
           <a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/user-register">Register</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="!onLogin()" class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="/user-login">Login</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/logout">Logout</a>
-        </li>
       </ul>
+      <div *ngIf="onLogin()" class="dropdown mr-5" dropdown>
+        <a href="#" class="dropdown-toggle" dropdownToggle (click)="false">
+            Welcome {{loggedinUser}}
+        </a>
+        <div class="dropdown-menu" *dropdownMenu>
+            <a href="#"class="dropdown-item">
+              <i class="fas fa-tachometer-alt"></i> View Dashboard</a>
+            <a href="#" class="dropdown-item">
+              <i class="far fa-user-circle"></i> My Profile</a>
+            <a href="#" class="dropdown-item">
+              <i class="fas fa-key"></i> Change Password</a>
+            <a (click)='onLogout()' class="dropdown-item">
+              <i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
