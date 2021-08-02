@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { IUser } from 'src/app/model/IUser';
+import { UserService } from 'src/app/services/user.service';
 import Validation from 'utils/validation';
 
 @Component({
@@ -9,16 +11,17 @@ import Validation from 'utils/validation';
 })
 export class UserRegisterComponent implements OnInit {
 
+  user!: IUser;
   form!: FormGroup;
   submitted = false; // this property helps us to check whether the form is submitted or not.
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private userService: UserService) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group(
       {
-        fullname: ['', Validators.required],
-        username: [
+        fullName: ['', Validators.required],
+        userName: [
           '',
           [
             Validators.required,
@@ -43,18 +46,13 @@ export class UserRegisterComponent implements OnInit {
       }
     );
   }
-  get f(): { [key: string]: AbstractControl } { // this is a simple getter function to make code smaller and more readable
-    // example instead of form.controls.username we can use f.username
-    return this.form.controls;
-  }
 
   onSubmit(): void {
     this.submitted = true;
-
-    if (this.form.invalid) {
-      return;
+    if (this.form.valid) {
+      //  this.user = Object.assign(this.user, this.form.value);
+        this.userService.addUser(this.userData());
     }
-
     console.log(JSON.stringify(this.form.value, null, 2));
   }
 
@@ -62,48 +60,36 @@ export class UserRegisterComponent implements OnInit {
     this.submitted = false;
     this.form.reset();
   }
+  userData(): IUser {
+
+    return this.user = {
+      fullName: this.fullName.value,
+      userName: this.userName.value,
+      email: this.email.value,
+      password: this.password.value,
+
+    }
+  }
+   // ------------------------------------
+    // Getter methods for all form controls
+    // ------------------------------------
+   get fullName() {
+      return this.form.get('fullName') as FormControl;
+  }
+  get userName() {
+      return this.form.get('userName') as FormControl;
+  }
+
+  get email() {
+      return this.form.get('email') as FormControl;
+  }
+  get password() {
+      return this.form.get('password') as FormControl;
+  }
+  get confirmPassword() {
+      return this.form.get('confirmPassword') as FormControl;
+  }
+
+  // ---------------------
 
 }
-// registrationForm!: FormGroup; // FormGroup is a class to organize and manage the relative Form Control.
-  // submitted = false;
-
-  // constructor() { }
-
-  // ngOnInit() {
-  //   this.registrationForm = new FormGroup({
-  //     userName: new FormControl(null, Validators.required),
-  //     email: new FormControl(null,[Validators.required, Validators.email]),
-  //     password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
-  //     confirmPassword: new FormControl(null, Validators.required)
-  //   }, this.passwordMatchingValidator); // our password matching validator.
-  // }
-
-  // passwordMatchingValidator(fc: AbstractControl): ValidationErrors | null {
-  //   //if a condition is valid it should return a JsObject with key:value
-  //   return fc.get('password')?.value === fc.get('confirmPassword')?.value ? null :
-  //     { notmatched: true } // if passwords dont match.
-  // };
-  //   //getter methods for all Form Controls
-  //   get userName() {
-  //     return this.registrationForm.get('userName') as FormControl;
-  //   }
-  //   get email() {
-  //     return this.registrationForm.get('email') as FormControl;
-  //   }
-  //   get password() {
-  //     return this.registrationForm.get('password') as FormControl;
-  //   }
-  //   get confirmPassword() {
-  //     return this.registrationForm.get('confirmPassword') as FormControl;
-  //   }
-  // onSubmit(): void {
-  //   this.submitted = true;
-  //   console.log(this.registrationForm);
-  // }
-  // onReset(): void {
-  //   this.submitted = false;
-  //   this.registrationForm.reset();
-  // }
-  // userSubmitted() {
-
-  // }
