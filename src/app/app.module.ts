@@ -20,6 +20,9 @@ import { UserService } from './services/user.service';
 import { AlertsService } from './services/alerts.service';
 import { AuthService } from './services/auth.service';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 const appRoutes: Routes = [// Each route is JS object with 2 Properties. path defines the URL, component defines our component for the path.
   {path: '', component: PropertyListComponent},
@@ -52,7 +55,11 @@ const appRoutes: Routes = [// Each route is JS object with 2 Properties. path de
     FormsModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
-    BsDropdownModule.forRoot(), // Adds directives and providers for in-app navigation among views defined in an application.
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
+    ButtonsModule.forRoot(), // Adds directives and providers for in-app navigation among views defined in an application.
+    BsDatepickerModule.forRoot(),
+
   ],
   providers: [
     HousingService,
