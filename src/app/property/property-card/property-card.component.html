@@ -1,22 +1,33 @@
-  <div class = "card">
-     <div class = "card-img-wrapper">
-      <img *ngIf="property.Image" class="card-img-top" src="assets/images/{{property.Image}}.jpg">
-      <img *ngIf="!property.Image" class="card-img-top" src="assets/images/defaultHouse.png">
+<div class="card">
+  <div class="card-img-wrapper">
+    <img *ngIf="property.photo" class="card-img-top" src="{{property.photo}}">
+    <img *ngIf="!property.photo" class="card-img-top" src="assets/images/house_default.png">
+    <ul class="list-inline text-center member-icons animate">
+      <li class="list-inline-item">
+        <button class="btn btn-primary" routerLink="/property-detail/{{property.id}}"><i class="far fa-edit"></i></button>
+      </li>
+      <li class="list-inline-item">
+        <button class="btn btn-primary"><i class="far fa-address-book"></i></button>
+      </li>
+    </ul>
 
-      <ul class= "list-inline text-center member-icons animate">
-        <li class="list-inline-item">
-          <button class="btn btn-primary" routerLink="/property-details/{{property.Id}}">Details</button>
-        </li>
-        <li class="list-inline-item">
-          <!-- TODO CHECK IF USER IS THE ONE THAT CREATED THE PROPERTY -->
-          <button class="btn btn-primary" routerLink="/property-edit/{{property.Id}}">Edit</button>
-        </li>
-      </ul>
   </div>
+  <div class="card-body p-1">
+    <h1 class="mb-0"> {{property.bhk}} BHK {{property.propertyType}} </h1>
 
-    <div class= "card-body p2">
-      <h3>{{property.Name}}</h3>
-      <p>{{property.Address}}</p>
-      <p>{{property.Type}}</p>
-      <p>{{property.Price}}$</p>
-    </div>
+    in {{property.name}}
+    <span *ngIf="property.name">,</span>
+    {{property.city}}
+
+    <h6  class="mt-2">{{property.furnishingType}}
+    <span *ngIf="property.furnishingType !== 'Unfurnished'">Furnished</span>
+    <span *ngIf="property.readyToMove"> | Ready to Move</span>
+    <span *ngIf="!property.readyToMove"> | Posession: {{property.estPossessionOn | date}}</span>
+    </h6>
+
+    <hr class="mt-0 mb-2">
+
+    <h6 class="mb-0">Price: <span class="font-highlight">{{property.price}} USD.</span> |
+      Area:  <span class="font-highlight">{{property.builtArea}} Sq Ft </span> </h6>
+  </div>
+</div>

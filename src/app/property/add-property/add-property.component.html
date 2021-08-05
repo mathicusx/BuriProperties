@@ -32,7 +32,7 @@
                     <label
                       *ngFor="let bhk of [1,2,3,4]"
                       class="btn btn-outline-primary mr-2"
-                      [btnRadio]!="bhk" tabindex="0" role="button"
+                      btnRadio="bhk" tabindex="0" role="button"
                       (click)="propertyView.bhk=bhk"
                       name="BHK">
                       {{bhk}}
@@ -50,7 +50,7 @@
                     <label
                     *ngFor="let ptype of propertyTypes"
                     class="btn btn-outline-primary mr-2"
-                    [btnRadio]!="ptype.id" tabindex="0" role="button"
+                    btnRadio="ptype.id" tabindex="0" role="button"
                     (click)="propertyView.propertyType=ptype.name"
                     name="PropType">{{ptype.name}}
                   </label>
@@ -68,7 +68,7 @@
                     *ngFor="let ftype of furnishTypes"
                     class="btn btn-outline-primary mr-2"
                     (click)="propertyView.furnishingType=ftype.name"
-                    [btnRadio]!="ftype.id" tabindex="0" role="button"
+                    btnRadio="ftype.id" tabindex="0" role="button"
                     name="FurnishType">
                     {{ftype.name}}
                   </label>
@@ -102,6 +102,7 @@
                     </option>
                   </select>
                   <div class="error-block">
+                  <!-- *ngIf="City.invalid && (nextClicked || City.touched)"> -->
                     Please select city
                   </div>
                 </div>
@@ -119,6 +120,7 @@
                     <label *ngIf="SellRent.value==2">Rent (in USD)</label>
                     <input type="text" class="form-control"
                     formControlName="Price" #price>
+                    <!-- (keyup)="propertyView.price=price.value"> -->
 
                     <div class="error-block"
                     *ngIf="Price.invalid && (nextClicked || Price.touched)">
@@ -147,7 +149,8 @@
                   <div class="form-group col-12">
                     <label>Built Area (in Sqr Feet)</label>
                     <input type="text"
-                    class="form-control" #builtArea
+                    class="form-control" #builtArea>
+                    <!-- (keyup)="propertyView.builtArea=builtArea.value" -->
                     formControlName="BuiltArea">
                     <div class="error-block"
                     *ngIf="BuiltArea.invalid && nextClicked">

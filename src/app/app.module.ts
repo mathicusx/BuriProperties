@@ -4,6 +4,7 @@ import {HttpClientModule} from '@angular/common/http'
 import { Routes, RouterModule } from  '@angular/router'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DatePipe } from '@angular/common';
 
 
 import { AppComponent } from './app.component';
@@ -23,6 +24,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 
 const appRoutes: Routes = [// Each route is JS object with 2 Properties. path defines the URL, component defines our component for the path.
   {path: '', component: PropertyListComponent},
@@ -66,6 +68,7 @@ const appRoutes: Routes = [// Each route is JS object with 2 Properties. path de
     UserService,
     AlertsService,
     AuthService,
+    DatePipe,
   ],
   bootstrap: [AppComponent]
 })
