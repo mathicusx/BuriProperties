@@ -50,7 +50,7 @@ export class AddPropertyComponent implements OnInit {
     ngOnInit() {
         if(!localStorage.getItem('userName'))
         {
-            this.alertService.error('You must be looged in to add a property');
+            this.alertService.error('You must be logged in to add a property');
             this.router.navigate(['/user/login']);
         }
 
