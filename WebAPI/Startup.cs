@@ -12,6 +12,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using WebAPI.Data;
+using WebAPI.Helpers;
+using WebAPI.Interfaces;
 
 namespace WebAPI
 {
@@ -31,6 +33,8 @@ namespace WebAPI
              options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddControllers();
             services.AddCors();
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
              // were adding cors so we can use our WebApi Domain Localhost:5000 to our Frontend Domain on Localhost:4200
             services.AddSwaggerGen(c =>
             {

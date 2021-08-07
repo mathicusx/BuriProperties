@@ -7,5 +7,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.8"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.8"/>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.8"/>
+    <PackageReference Include="AspCore.Dtos" Version="5.0.0"/>
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="5.0.8"/>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1"/>
   </ItemGroup>
 </Project>
