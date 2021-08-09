@@ -6,18 +6,24 @@ namespace WebAPI.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly DataContext dc;
+        private readonly DataContext dataContext;
 
-        public UnitOfWork(DataContext dc)
+        public UnitOfWork(DataContext dataContext)
         {
-            this.dc = dc;
+            this.dataContext = dataContext;
         }
         public ICityRepository CityRepository =>
-            new CityRepository(dc);
+            new CityRepository(dataContext);
+
+        public IFurnishingTypeRepository FurnishingTypeRepository =>
+            new FurnishingTypeRepository(dataContext);
+
+        public IPropertyTypeRepository PropertyTypeRepository =>
+            new PropertyTypeRepository(dataContext);
 
         public async Task<bool> SaveAsync()
         {
-           return await dc.SaveChangesAsync() > 0;
+           return await dataContext.SaveChangesAsync() > 0; // any value > 0 mean that changes will be succefully Saved.
         }
     }
 }

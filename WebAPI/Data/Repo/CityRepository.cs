@@ -8,31 +8,31 @@ namespace WebAPI.Data.Repo
 {
     public class CityRepository : ICityRepository
     {
-        private readonly DataContext dc;
+        private readonly DataContext dataContext;
 
-        public CityRepository(DataContext dc)
+        public CityRepository(DataContext dataContext)
         {
-            this.dc = dc;
+            this.dataContext = dataContext;
         }
         public void AddCity(City city)
         {
-            dc.Cities.Add(city);
+            dataContext.Cities.Add(city);
         }
 
         public void DeleteCity(int CityId)
         {
-            var city = dc.Cities.Find(CityId);
-            dc.Cities.Remove(city);
+            var city = dataContext.Cities.Find(CityId);
+            dataContext.Cities.Remove(city);
         }
 
         public async Task<City> FindCity(int id)
         {
-            return await dc.Cities.FindAsync(id);
+            return await dataContext.Cities.FindAsync(id);
         }
 
         public async Task<IEnumerable<City>> GetCitiesAsync()
         {
-            return await dc.Cities.ToListAsync();
+            return await dataContext.Cities.ToListAsync();
         }
     }
 }
