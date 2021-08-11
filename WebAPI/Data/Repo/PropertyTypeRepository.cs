@@ -6,6 +6,7 @@ using WebAPI.Models;
 
 namespace WebAPI.Data.Repo
 {
+
     public class PropertyTypeRepository : IPropertyTypeRepository
     {
         private readonly DataContext dataContext;
