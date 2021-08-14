@@ -14,7 +14,8 @@ using WebAPI.Models;
 
 namespace WebAPI.Controllers
 {
-    public class AccountController : ControllerBase
+
+    public class AccountController :  BaseController
     {
         private readonly IUnitOfWork uow;
         private readonly IConfiguration configuration;

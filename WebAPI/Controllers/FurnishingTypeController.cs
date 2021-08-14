@@ -9,9 +9,8 @@ using WebAPI.Interfaces;
 namespace WebAPI.Controllers
 {
 
-      [Route("api/[controller]")]
-      [ApiController]
-    public class FurnishingTypeController: ControllerBase
+
+    public class FurnishingTypeController: BaseController
     {
         private readonly IUnitOfWork uow;
         private readonly IMapper mapper;

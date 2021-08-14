@@ -9,9 +9,7 @@ using WebAPI.Interfaces;
 namespace WebAPI.Controllers
 {
 
-    [Route("api/[controller]")]
-    [ApiController]
-    public class PropertyTypeController: ControllerBase
+    public class PropertyTypeController: BaseController
     {
         private readonly IUnitOfWork uow;
         private readonly IMapper mapper;
