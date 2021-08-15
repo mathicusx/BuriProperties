@@ -82,7 +82,7 @@ export class AddPropertyComponent implements OnInit {
             }),
 
             PriceInfo: this.fb.group({
-                Price: [null, Validators.required],
+                Price: [0, Validators.required],
                 BuiltArea: [null, Validators.required],
                 CarpetArea: [null],
                 Security: [0],

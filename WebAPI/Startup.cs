@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,18 +33,18 @@ namespace WebAPI
         {
 
 
+           var builder = new SqlConnectionStringBuilder(
+                Configuration.GetConnectionString("Default_local"));
+            builder.Password = Configuration.GetSection("DBPassword").Value;
+
+            var connectionString = builder.ConnectionString;
+
             services.AddDbContext<DataContext>(options =>
-             options.UseSqlServer(Configuration.GetConnectionString("Default")));
+            options.UseSqlServer(connectionString));
             services.AddControllers().AddNewtonsoftJson();
             services.AddCors();
-            // were adding cors so we can use our WebApi Domain Localhost:5000 to our Frontend Domain on Localhost:4200
-
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
-            });
 
             var secretKey = Configuration.GetSection("AppSettings:Key").Value;
             var key = new SymmetricSecurityKey(Encoding.UTF8
@@ -60,7 +61,6 @@ namespace WebAPI
                         IssuerSigningKey = key
                     };
                 });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,8 +69,7 @@ namespace WebAPI
               if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
+
             }
             else // if were in production mode
             {
@@ -94,9 +93,14 @@ namespace WebAPI
 
             app.UseRouting();
 
+            app.UseHsts(); // only allows https acces without http
+            app.UseHttpsRedirection(); // redirects htpp request to https.
+
 
             app.UseCors( m => m.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()); // this is  bad practice.
 
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

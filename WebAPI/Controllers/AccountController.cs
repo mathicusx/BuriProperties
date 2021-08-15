@@ -69,7 +69,7 @@ namespace WebAPI.Controllers
             return StatusCode(201);
         }
 
-        private string CreateJWT(User user)
+        private string CreateJWT(User user) // here we get our JwT and Bearer Information.
         {
             var secretKey = configuration.GetSection("AppSettings:Key").Value;
             var key = new SymmetricSecurityKey(Encoding.UTF8
@@ -86,7 +86,7 @@ namespace WebAPI.Controllers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddMinutes(1),
+                Expires = DateTime.UtcNow.AddDays(1), // Bearer Token Expires in 1 day just for testing.
                 SigningCredentials = signingCredentials
             };
 

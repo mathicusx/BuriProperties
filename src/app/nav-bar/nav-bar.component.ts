@@ -2,25 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import { AlertsService } from '../services/alerts.service';
 
 @Component({
-  selector: 'app-nav-bar',
-  templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+    selector: 'app-nav-bar',
+    templateUrl: './nav-bar.component.html',
+    styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
 
-  loggedinUser!: string
-  constructor(private alertService: AlertsService) { }
+    loggedinUser!: string;
+    constructor(private alerts: AlertsService) { }
 
-  ngOnInit() {
-  }
-  onLogin() {
-    this.loggedinUser = localStorage.getItem('token') as string;
-    return this.loggedinUser;
+    ngOnInit() {
+    }
 
-  }
-  onLogout() {
-    localStorage.removeItem('token');
-    this.alertService.success("Logged out succefully");
-  }
+    loggedin() {
+        this.loggedinUser = localStorage.getItem('userName') as string;
+        return this.loggedinUser;
+    }
+
+    onLogout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('userName');
+        this.alerts.success('You are logged out !');
+    }
 
 }

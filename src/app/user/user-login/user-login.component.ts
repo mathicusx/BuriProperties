@@ -1,45 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-
-import { IUser } from 'src/app/model/IUser';
-import { AlertsService } from 'src/app/services/alerts.service';
 import { AuthService } from 'src/app/services/auth.service';
+import {AlertsService } from 'src/app/services/alerts.service';
+import { Router } from '@angular/router';
+import { UserForLogin } from 'src/app/model/user';
 
 @Component({
-  selector: 'app-user-login',
-  templateUrl: './user-login.component.html',
-  styleUrls: ['./user-login.component.css']
+    selector: 'app-user-login',
+    templateUrl: './user-login.component.html',
+    styleUrls: ['./user-login.component.css'],
 })
 export class UserLoginComponent implements OnInit {
-    user!: IUser;
-  submitted = false; // this property helps us to check whether the form is submitted or not.
+    constructor(private authService: AuthService,
+                private alerts: AlertsService,
+                private router: Router) { }
 
-  constructor(private authService: AuthService,
-              private alertService: AlertsService,
-              private router: Router) { }
-
-  ngOnInit() {
-  }
-
-  onLogin(loginForm: NgForm) {
-    console.log(loginForm.value);
-    const token =  this.authService.authUser(loginForm.value);
-    if(token) {
-      localStorage.setItem('token', token.userName);
-      console.log("login succesfull");
-      this.alertService.success('Logged in succefully');
-      this.router.navigate(['/']);
-    }else {
-      console.log('not logged in');
-      this.alertService.error('Wrong credentials');
+    ngOnInit() {
     }
 
-
-  }
-
-  onRegister() {
-
-  }
-
+    onLogin(loginForm: NgForm) {
+        console.log(loginForm.value);
+        // const token = this.authService.authUser(loginForm.value);
+        this.authService.authUser(loginForm.value).subscribe(
+            (response: UserForLogin) => {
+                console.log(response);
+                const user = response;
+                if (user) {
+                    localStorage.setItem('token', user.token);
+                    localStorage.setItem('userName', user.userName);
+                    this.alerts.success('Login Successful');
+                    this.router.navigate(['/']);
+                }
+            }
+        );
+    }
 }
