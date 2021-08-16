@@ -11,6 +11,9 @@ import { UserForLogin } from 'src/app/model/user';
     styleUrls: ['./user-login.component.css'],
 })
 export class UserLoginComponent implements OnInit {
+
+  userToken!: UserForLogin;
+
     constructor(private authService: AuthService,
                 private alerts: AlertsService,
                 private router: Router) { }
@@ -22,16 +25,16 @@ export class UserLoginComponent implements OnInit {
         console.log(loginForm.value);
         // const token = this.authService.authUser(loginForm.value);
         this.authService.authUser(loginForm.value).subscribe(
-            (response: UserForLogin) => {
-                console.log(response);
-                const user = response;
-                if (user) {
-                    localStorage.setItem('token', user.token);
-                    localStorage.setItem('userName', user.userName);
-                    this.alerts.success('Login Successful');
-                    this.router.navigate(['/']);
-                }
+          (response: any) => {
+            console.log(response);
+            const user = response;
+            if (user) {
+                localStorage.setItem('token', user.token);
+                localStorage.setItem('userName', user.userName);
+                this.alerts.success('Login Successful');
+                this.router.navigate(['/']);
             }
+        }
         );
     }
 }

@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class UserRegisterComponent implements OnInit {
 
-    registerationForm!: FormGroup;
+  registerationForm!: FormGroup;
     user!: UserForRegister;
     userSubmitted!: boolean;
     constructor(private fb: FormBuilder,
@@ -30,7 +30,6 @@ export class UserRegisterComponent implements OnInit {
             email: [null, [Validators.required, Validators.email]],
             password: [null, [Validators.required, Validators.minLength(8)]],
             confirmPassword: [null, Validators.required],
-            mobile: [null, [Validators.required, Validators.maxLength(10)]]
         }, {validators: this.passwordMatchingValidatior});
     }
 
@@ -84,8 +83,6 @@ export class UserRegisterComponent implements OnInit {
     get confirmPassword() {
         return this.registerationForm.get('confirmPassword') as FormControl;
     }
-    get mobile() {
-        return this.registerationForm.get('mobile') as FormControl;
-    }
+
     // ------------------------
 }

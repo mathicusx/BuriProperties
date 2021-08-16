@@ -34,8 +34,8 @@ const appRoutes: Routes = [// Each route is JS object with 2 Properties. path de
   {path: 'rent-property', component: PropertyListComponent},
   {path: 'property-edit/:id', component: PropertyEditComponent},
   {path: 'property-details/:id', component: PropertyDetailComponent},
-  {path: 'user-login', component: UserLoginComponent},
-  {path: 'user-register', component: UserRegisterComponent},
+  {path: 'user/login', component: UserLoginComponent},
+  {path: 'user/register', component: UserRegisterComponent},
   {path: '**', component: PropertyListComponent},
 
 ]

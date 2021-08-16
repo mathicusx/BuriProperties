@@ -34,7 +34,7 @@ namespace WebAPI
 
 
            var builder = new SqlConnectionStringBuilder(
-                Configuration.GetConnectionString("Default_local"));
+                Configuration.GetConnectionString("Default"));
             builder.Password = Configuration.GetSection("DBPassword").Value;
 
             var connectionString = builder.ConnectionString;
