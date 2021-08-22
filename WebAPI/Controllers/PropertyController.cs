@@ -49,7 +49,7 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> AddProperty(PropertyDto propertyDto)
         {
             var property = mapper.Map<Property>(propertyDto);
-            var userId = GetUserId();
+            var userId = GetUserId(); // our Authorized User
             property.PostedBy = userId;
             property.LastUpdatedBy = userId;
             uow.PropertyRepository.AddProperty(property);

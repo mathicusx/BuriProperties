@@ -22,6 +22,7 @@ export class AddPropertyComponent implements OnInit {
     nextClicked!: boolean;
     property = new Property();
 
+
     // Will come from masters
     propertyTypes!: Ikeyvaluepair[];
     furnishTypes!: Ikeyvaluepair[];
@@ -221,7 +222,7 @@ export class AddPropertyComponent implements OnInit {
     onSubmit() {
         this.nextClicked = true;
         if (this.allTabsValid()) {
-            this.mapProperty();
+            this.mapProperty();// we are setting all the properties values  using MapProperty.
             this.housingService.addProperty(this.property).subscribe(
                 () => {
                     this.alertService.success('Congrats, your property listed successfully on our website');
@@ -293,5 +294,6 @@ export class AddPropertyComponent implements OnInit {
             this.formTabs.tabs[NextTabId].active = true;
         }
     }
+
 
 }

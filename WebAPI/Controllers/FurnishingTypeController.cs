@@ -27,6 +27,9 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> GetFurnishingTypes()
         {
             var furnishingTypes = await uow.FurnishingTypeRepository.GetFurnishingTypesAsync();
+
+            //We have not mapped it to PropertyType Specific Dto, we are using A generic Type KVP Dto.
+            // So we don't have to make multiple Dtos  for Types. -- Code Reusability by using KVPDto.
             var furnishingTypesDto = mapper.Map<IEnumerable<KeyValuePairDto>>(furnishingTypes);
             return Ok(furnishingTypesDto);
         }

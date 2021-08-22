@@ -19,6 +19,8 @@ namespace WebAPI.Helpers
 
              CreateMap<Property, PropertyDto>().ReverseMap();
 
+
+              // Custom Mapping with ForMember Method
               CreateMap<Property, PropertyListDto>()
                 .ForMember(d => d.City, opt => opt.MapFrom(src => src.City.Name))
                 .ForMember(d => d.Country, opt => opt.MapFrom(src => src.City.Country))
@@ -27,7 +29,7 @@ namespace WebAPI.Helpers
                 .ForMember(d => d.Photo, opt => opt.MapFrom(src => src.Photos
                                 .FirstOrDefault(p => p.IsPrimary).ImageUrl));
 
-
+            // Custom Mapping with ForMember Method
             CreateMap<Property, PropertyDetailDto>()
                 .ForMember(d => d.City, opt => opt.MapFrom(src => src.City.Name))
                 .ForMember(d => d.Country, opt => opt.MapFrom(src => src.City.Country))

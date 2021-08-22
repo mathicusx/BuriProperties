@@ -26,6 +26,9 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> GetPropertyTypes()
         {
             var PropertyTypes = await uow.PropertyTypeRepository.GetPropertyTypesAsync();
+
+            //We have not mapped it to PropertyType Specific Dto, we are using A generic Type KVP Dto.
+            // So we don't have to make multiple Dtos  for Types. -- Code Reusability by using KVPDto.
             var PropertyTypesDto = mapper.Map<IEnumerable<KeyValuePairDto>>(PropertyTypes);
             return Ok(PropertyTypesDto);
         }

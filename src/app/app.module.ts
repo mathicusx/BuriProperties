@@ -5,6 +5,7 @@ import { Routes, RouterModule } from  '@angular/router'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePipe } from '@angular/common';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 
 import { AppComponent } from './app.component';
@@ -65,6 +66,7 @@ const appRoutes: Routes = [// Each route is JS object with 2 Properties. path de
     TabsModule.forRoot(),
     ButtonsModule.forRoot(), // Adds directives and providers for in-app navigation among views defined in an application.
     BsDatepickerModule.forRoot(),
+    NgxGalleryModule,
   ],
   providers:[
     {
