@@ -30,12 +30,12 @@
                   formControlName="BHK"
                   name="BHK">
                     <label
-                      *ngFor="let bhk of [1,2,3,4]"
-                      class="btn btn-outline-primary mr-2"
-                      btnRadio="bhk" tabindex="0" role="button"
-                      (click)="propertyView.bhk=bhk"
-                      name="BHK">
-                      {{bhk}}
+                    *ngFor="let bhk of [1,2,3,4]"
+                    class="btn btn-outline-primary mr-2"
+                    [btnRadio]="bhk.toString()" tabindex="0" role="button"
+                    (click)="propertyView.bhk=bhk"
+                    name="BHK">
+                    {{bhk}}
                     </label>
                   </div>
                   <div class="error-block" *ngIf="BHK.invalid && nextClicked">
@@ -50,7 +50,7 @@
                     <label
                     *ngFor="let ptype of propertyTypes"
                     class="btn btn-outline-primary mr-2"
-                    btnRadio="ptype.id" tabindex="0" role="button"
+                    [btnRadio]="ptype.id.toString()" tabindex="0" role="button"
                     (click)="propertyView.propertyType=ptype.name"
                     name="PropType">{{ptype.name}}
                   </label>
@@ -68,7 +68,7 @@
                     *ngFor="let ftype of furnishTypes"
                     class="btn btn-outline-primary mr-2"
                     (click)="propertyView.furnishingType=ftype.name"
-                    btnRadio="ftype.id" tabindex="0" role="button"
+                    [btnRadio]="ftype.id.toString()" tabindex="0" role="button"
                     name="FurnishType">
                     {{ftype.name}}
                   </label>
@@ -150,7 +150,7 @@
                     <label>Built Area (in Sqr Feet)</label>
                     <input type="number"
                     class="form-control" #builtArea
-                    (keyup)="propertyView.builtArea=builtArea.valueAsNumber">
+                    (keyup)="propertyView.builtArea=builtArea.valueAsNumber"
                     formControlName="BuiltArea">
                     <div class="error-block"
                     *ngIf="BuiltArea.invalid && nextClicked">
