@@ -40,7 +40,8 @@ export class HousingService {
                 Authorization: 'Bearer '+ localStorage.getItem('token')
             })
         };
-        return this.http.post(this.baseUrl + '/property/add', property, httpOptions);
+        return this.http.post(this.baseUrl + '/property/add', property, httpOptions); // we are submitting our property here.
+
     }
 
     newPropID() {
@@ -57,11 +58,17 @@ export class HousingService {
     {
         const today = new Date();
         const estDate = new Date(dateofEstablishment);
+
+        // we are getting age of property by getting today's date - establishment date of property.
         let age = today.getFullYear() - estDate.getFullYear();
+
+        // difference of months same as age.
         const m = today.getMonth() - estDate.getMonth();
 
-        // Current month smaller than establishment month or
-        // Same month but current date smaller than establishment date
+
+        // here we are checking if month of current date is  smaller than the month of establishment date
+        // or if the month is the same but our current date is smaller than the establishment date
+        // that means our property hasn't completed a full year so we are substracting from our age.
         if (m < 0 || (m === 0 && today.getDate() < estDate.getDate())) {
             age --;
         }

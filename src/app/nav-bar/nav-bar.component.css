@@ -5,3 +5,6 @@
   font-size: 20px;
   white-space: nowrap;
 }
+.nav-link{
+  background-color: #212529 !important;
+}

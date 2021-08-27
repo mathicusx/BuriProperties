@@ -15,7 +15,6 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HousingService } from './services/housing.service';
 import { AddPropertyComponent } from './property/add-property/add-property.component';
 import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
-import { PropertyEditComponent } from './property/property-edit/property-edit.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { AuthService } from './services/auth.service';
@@ -27,14 +26,16 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { HttpErrorInterceptorService } from './services/httperor-interceptor.service';
 import { AlertsService } from './services/alerts.service';
+import { PropertyDetailResolverService } from './property/property-detail/property-detail-resolver.service';
 
 
 const appRoutes: Routes = [// Each route is JS object with 2 Properties. path defines the URL, component defines our component for the path.
   {path: '', component: PropertyListComponent},
   {path: 'add-property', component: AddPropertyComponent},
   {path: 'rent-property', component: PropertyListComponent},
-  {path: 'property-edit/:id', component: PropertyEditComponent},
-  {path: 'property-details/:id', component: PropertyDetailComponent},
+  {path: 'property-detail/:id',
+  component: PropertyDetailComponent,
+  resolve: {prp: PropertyDetailResolverService}},
   {path: 'user/login', component: UserLoginComponent},
   {path: 'user/register', component: UserRegisterComponent},
   {path: '**', component: PropertyListComponent},
@@ -48,7 +49,6 @@ const appRoutes: Routes = [// Each route is JS object with 2 Properties. path de
       PropertyListComponent,
       AddPropertyComponent,
       PropertyDetailComponent,
-      PropertyEditComponent,
       NavBarComponent,
       UserRegisterComponent,
       UserLoginComponent,
@@ -78,6 +78,7 @@ const appRoutes: Routes = [// Each route is JS object with 2 Properties. path de
     HousingService,
     AlertsService,
     AuthService,
+    PropertyDetailResolverService
 ],
   bootstrap: [AppComponent]
 })

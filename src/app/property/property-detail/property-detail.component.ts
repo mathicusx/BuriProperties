@@ -32,6 +32,7 @@ export class PropertyDetailComponent implements OnInit {
             }
         );
 
+        // here we get our calculated age from our housingservice Method.
         this.property.age = this.housingService.getPropertyAge(this.property.estPossessionOn!);
 
 
@@ -46,7 +47,7 @@ export class PropertyDetailComponent implements OnInit {
             }
         ];
 
-        this.galleryImages = this.getPropertyPhotos();
+        this.galleryImages = this.getPropertyPhotos(); // we get property photos from our Api.
     }
     getPropertyPhotos(): NgxGalleryImage[] {
         const photoUrls: NgxGalleryImage[] = [];
@@ -56,6 +57,7 @@ export class PropertyDetailComponent implements OnInit {
                 this.mainPhotoUrl = photo.imageUrl;
             }
             else{
+              // we push each image to photo urls and set 3 urlss for small medium and big.
                 photoUrls.push(
                     {
                         small: photo.imageUrl,

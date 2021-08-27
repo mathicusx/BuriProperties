@@ -16,11 +16,16 @@ namespace WebAPI.Controllers
         private readonly IUnitOfWork uow;
         private readonly IMapper mapper;
 
+        private readonly IPhotoService photoService;
+
         public PropertyController(IUnitOfWork uow,
-        IMapper mapper)
+        IMapper mapper,
+        IPhotoService photoService)
         {
             this.uow = uow;
             this.mapper = mapper;
+            this.photoService = photoService;
+
         }
 
         //property/list/1
@@ -56,6 +61,35 @@ namespace WebAPI.Controllers
             await uow.SaveAsync();
             return StatusCode(201);
         }
+
+          //property/add/photo/1
+        [HttpPost("add/photo/{propId}")]
+        [Authorize]
+        public async Task<IActionResult> AddPropertyPhoto(IFormFile file, int propId)
+        {
+            var result = await photoService.UploadPhotoAsync(file);
+            if(result.Error != null) // if file is not uploaded to Cloudinary.
+                return BadRequest(result.Error.Message);
+
+            var property = await uow.PropertyRepository.GetPropertyByIdAsync(propId);
+
+            var photo = new Photo
+            {
+                // result is our Cloudinary upload file.
+                ImageUrl = result.SecureUrl.AbsoluteUri,
+                PublicId = result.PublicId
+            };
+            if(property.Photos.Count == 0)
+            {
+              // we are making our first photo our primary photo. it will be desplayed on our Property Card Component.
+                photo.IsPrimary = true;
+            }
+
+            property.Photos.Add(photo);
+            await uow.SaveAsync();
+            return StatusCode(201);
+        }
+
     }
 
 }
