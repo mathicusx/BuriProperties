@@ -304,8 +304,16 @@
               <tab heading="Photos">
                 <div class="form-group col-12">
                   <div class="photo-control">
-                      <button class="mt-5" type="button">Upload</button> <br>
-                      This is under construction
+                    <ngx-dropzone (change)="onSelect($event)" style="align-items: center;">
+                      <ngx-dropzone-label>Drop it, baby!</ngx-dropzone-label>
+                      <ngx-dropzone-image-preview
+                       ngProjectAs="ngx-dropzone-preview"
+                       *ngFor="let f of files"
+                       [file]="f"
+                       [removable]="true" (removed)="onRemove(f)">
+                        <ngx-dropzone-label>({{ f.type }})</ngx-dropzone-label>
+                      </ngx-dropzone-image-preview>
+                    </ngx-dropzone>
                   </div>
                 </div>
                 <div class="form-group col-12">

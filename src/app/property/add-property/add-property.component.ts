@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import {FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { TabsetComponent } from 'ngx-bootstrap/tabs/public_api';
+import { NgxDropzoneComponent, NgxDropzoneImagePreviewComponent} from 'ngx-dropzone';
+
 import { IPropertyBase } from 'src/app/model/IPropertyBase';
 import { Property } from 'src/app/model/property';
 import { HousingService } from 'src/app/services/housing.service';
@@ -19,8 +21,13 @@ export class AddPropertyComponent implements OnInit {
     // @ViewChild('Form') addPropertyForm: NgForm;
     @ViewChild('formTabs') formTabs!: TabsetComponent;
     addPropertyForm!: FormGroup;
+    dropZoneComponent!: NgxDropzoneComponent;
+    dropZoneComponentPreview!: NgxDropzoneImagePreviewComponent;
+
+
     nextClicked!: boolean;
     property = new Property();
+       files: File[] = [];
 
 
     // Will come from masters
@@ -241,6 +248,18 @@ export class AddPropertyComponent implements OnInit {
         }
     }
 
+
+      onSelect(event: { addedFiles: any; }) {
+        console.log(event);
+        this.files.push(...event.addedFiles);
+      }
+
+      onRemove(event: File) {
+        console.log(event);
+        this.files.splice(this.files.indexOf(event), 1);
+      }
+
+
     mapProperty(): void {
         this.property.id = this.housingService.newPropID();
         this.property.sellRent = +this.SellRent.value;
@@ -294,6 +313,5 @@ export class AddPropertyComponent implements OnInit {
             this.formTabs.tabs[NextTabId].active = true;
         }
     }
-
 
 }

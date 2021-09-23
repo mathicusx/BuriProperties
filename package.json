@@ -22,6 +22,8 @@
     "alertifyjs": "^1.13.1",
     "bootstrap": "^5.0.2",
     "ngx-bootstrap": "^7.0.0",
+    "ngx-dropzone": "^3.0.0",
+    "ngx-dropzone-wrapper": "^10.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
