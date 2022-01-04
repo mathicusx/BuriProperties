@@ -10,5 +10,3 @@ How to start project:
 4. Run the the project by doing: ng server or ng s
 the project is on localhost:4200 for now, I will deploy it later down the line when i implement more features.
 
-NOTE: IN ORDER TO RUN THIS YOU NEED TO CONNECT IT TO YOUR OWN SQL DATABASE AS I AM NOT PUSHING THE CONFIG FILES TO THIS REPO AND MAKE A SECRET KEY FOR THE JWT TOKEN
-IN THE WEBAPI YOU NEED TO CHANGE appSettings, and DbPassword in order for this project to work for you
