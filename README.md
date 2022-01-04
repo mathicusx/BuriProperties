@@ -1,5 +1,4 @@
-This Project was made from scratch by me. (cough.. StackOverflow). for my University Exam
-it uses .Net As WebApi, SQL for my Database, and Angular for the FrontEnd part.
+This Project uses .Net As WebApi, SQL for my Database, and Angular for the FrontEnd part.
 the purpose of this application is for users to list their properties for selling or renting.
 there are still more issues i have with the project but the general part of it is working.
 
